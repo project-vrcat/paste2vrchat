@@ -1,9 +1,6 @@
 $OutDir = "bin"
 
-if (!(Test-Path $OutDir))
-{
-  mkdir $OutDir
-}
+if (!(Test-Path $OutDir)) { mkdir $OutDir }
 
 # Empty OutDir
 Get-ChildItem $OutDir | Remove-Item -Recurse -Force
@@ -26,7 +23,4 @@ go generate
 go build --ldflags "-s -w -H windowsgui" -o "$OutDir/paste2vrchat.exe"
 
 # Run UPX
-if ((Get-Command upx -ErrorAction SilentlyContinue) -ne $null)
-{
-  upx -9 "$OutDir/*.exe"
-}
+if ((Get-Command upx -ErrorAction SilentlyContinue) -ne $null) { upx -9 "$OutDir/*.exe" }
