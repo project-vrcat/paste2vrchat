@@ -1,8 +1,9 @@
 # Package
 version       = "1.0.0"
 author        = "Gizmo"
-description   = "paste2vrchat cli"
+description   = "paste2vrchat"
 license       = "MIT"
+bin           = @["cli"]
 
 # Dependencies
 requires "nim >= 1.6.0"

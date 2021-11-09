@@ -2,4 +2,9 @@
 .vscode/
 .atom/
 
+bin/
+
 *.exe
+*.dll
+*.so
+*.dylib
