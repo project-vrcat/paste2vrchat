@@ -7,7 +7,6 @@ WIP
 - [x] Command line tools
 - [ ] Browser extension ([WIP](https://github.com/project-vrcat/paste2vrchat-addons))
 - [ ] GUI
-- [ ] Documentation
 
 ## Thanks
 
