@@ -13,7 +13,7 @@ WIP
 
 Thanks to [JetBrains](https://jb.gg/OpenSource) for the open source license(s).
 
-[![JetBrains Logo](https://raw.githubusercontent.com/project-vrcat/VRChatConfigurationEditor/main/images/jetbrains.svg)](https://jb.gg/OpenSource)
+[![JetBrains Logo](./images/jetbrains.svg)](https://jb.gg/OpenSource)
 
 ## License
 
