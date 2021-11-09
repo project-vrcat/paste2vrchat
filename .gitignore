@@ -3,8 +3,13 @@
 .atom/
 
 bin/
+public/
 
 *.exe
 *.dll
 *.so
 *.dylib
+*.ab
+app/build.json
+
+rsrc.syso
