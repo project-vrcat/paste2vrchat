@@ -6,19 +6,22 @@ jobs:
   build-cli:
     name: Build CLI
     runs-on: windows-2019
-    strategy:
-      matrix:
-        nim: ["1.6.0"]
     steps:
       - name: Check out git repository
         uses: actions/checkout@v2
 
+      - name: Cache choosenim
+        id: cache-choosenim
+        uses: actions/cache@v1
+        with:
+          path: ~/.choosenim
+          key: ${{ runner.os }}-choosenim
       - name: Cache nimble
         id: cache-nimble
         uses: actions/cache@v2
         with:
-          path: C:\Users\runneradmin\.nimble
-          key: ${{ runner.os }}-nimble-${{ matrix.nim-version}}-${{ hashFiles('paste2vrchat.nimble') }}
+          path: ~/.nimble
+          key: ${{ runner.os }}-nimble-${{ hashFiles('paste2vrchat.nimble') }}
       - name: Setup Nim
         uses: jiro4989/setup-nim-action@v1
         with:
