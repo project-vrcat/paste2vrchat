@@ -16,12 +16,6 @@ jobs:
         with:
           path: ~/.choosenim
           key: ${{ runner.os }}-choosenim
-      - name: Cache nimble
-        id: cache-nimble
-        uses: actions/cache@v2
-        with:
-          path: ~/.nimble
-          key: ${{ runner.os }}-nimble-${{ hashFiles('paste2vrchat.nimble') }}
       - name: Setup Nim
         uses: jiro4989/setup-nim-action@v1
         with:
