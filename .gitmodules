@@ -1,6 +1,3 @@
-[submodule "web-ui"]
-	path = web-ui
-	url = https://github.com/project-vrcat/paste2vrchat-web
 [submodule "addons"]
 	path = addons
 	url = https://github.com/project-vrcat/paste2vrchat-addons
