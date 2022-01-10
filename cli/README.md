@@ -27,7 +27,8 @@ p2vrc_cli.exe --open-url "p2vrc://paste?text=https%3A%2F%2Fwww.youtube.com%2Fwat
 ## How to build
 
 1. [Install Nim](https://nim-lang.org/install.html)
-2. Build
+2. [Install GCC](https://gcc.gnu.org/install/)
+3. Build
 
 ```shell
 git clone https://github.com/project-vrcat/paste2vrchat
