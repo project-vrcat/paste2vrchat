@@ -54,9 +54,11 @@ jobs:
           node-version: "16"
           cache: "yarn"
           cache-dependency-path: addons/yarn.lock
-      - run: |
+      - name: Yarn install
+        run: |
           cd addons
           yarn install
-      - run: |
+      - name: Build
+        run: |
           cd addons
           yarn build
