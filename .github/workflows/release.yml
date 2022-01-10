@@ -1,30 +1,14 @@
 name: Release
 
-on:
-  push:
-    tags: [ 'v*' ]
+on: [push]
 
 jobs:
-  release:
-    name: Release
+  build-cli:
+    name: Release CLI
     runs-on: windows-2019
     steps:
       - name: Check out git repository
         uses: actions/checkout@v2
-
-      - name: Cache module
-        uses: actions/cache@v2
-        with:
-          path: |
-            %LocalAppData%\go-build
-            ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-
-      - name: Setup Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: "^1.17"
 
       - name: Cache choosenim
         id: cache-choosenim
@@ -43,10 +27,32 @@ jobs:
       - name: Setup Nim
         uses: jiro4989/setup-nim-action@v1
         with:
-          nim-version: '1.6.0'
-
+          nim-version: "1.6.0"
       - name: Setup upx
         run: choco install upx
 
-      - name: Build
-        run: ./build.ps1
+      - name: Build CLI
+        run: |
+          nimble install --depsOnly -y
+          nim c -d:release -d:strip --opt:size --app:gui --outdir:. cli/*.nim
+          upx -9 "*.exe"
+
+  build-addons:
+    name: Build Addons
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check out git repository
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Checkout submodules
+        run: git submodule update --init --recursive
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+          cache: "yarn"
+          cache-dependency-path: addons/yarn.lock
+      - run: yarn install
+      - run: yarn build

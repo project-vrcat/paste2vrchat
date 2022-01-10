@@ -1,0 +1,1 @@
+@p2vrc_cli.exe --setup
