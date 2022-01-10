@@ -55,8 +55,9 @@ proc RegisterUrlScheme() =
 
 proc main() =
   var text:string
-  if paramCount() == 1 and paramStr(1) == "--register":
+  if paramCount() == 1 and paramStr(1) == "--setup":
     RegisterUrlScheme()
+    MessageBox(0, "Setup complete", "Paste2VRChat Setup", MB_OK)
     quit(QuitSuccess)
   elif paramCount() == 1:
     text = paramStr(1)
@@ -67,6 +68,9 @@ proc main() =
     case res.hostname:
       of "paste":
         text = res.query["text"]
+      of "check":
+        MessageBox(0, "Success", "Paste2VRChat Check", MB_OK)
+        quit(QuitSuccess)
 
   if text == "": return
   if not SwitchToWindow(nil, "VRChat"): return
