@@ -10,12 +10,6 @@ jobs:
       - name: Check out git repository
         uses: actions/checkout@v2
 
-      - name: Cache choosenim
-        id: cache-choosenim
-        uses: actions/cache@v2
-        with:
-          path: ~/.choosenim
-          key: ${{ runner.os }}-choosenim-${{ matrix.nim-version}}
       - name: Cache nimble
         id: cache-nimble
         uses: actions/cache@v2
@@ -28,14 +22,18 @@ jobs:
         uses: jiro4989/setup-nim-action@v1
         with:
           nim-version: "1.6.0"
-      - name: Setup upx
-        run: choco install upx
 
       - name: Build CLI
         run: |
           nimble install --depsOnly -y
           nim c -d:release -d:strip --opt:size --app:gui --outdir:. cli/*.nim
-          upx -9 "*.exe"
+      - name: Run UPX
+        uses: crazy-max/ghaction-upx@v1
+        with:
+          version: latest
+          files: |
+            ./p2vrc_cli.exe
+          args: "-9"
 
   build-addons:
     name: Build Addons
