@@ -5,33 +5,22 @@ on: [push]
 jobs:
   build-cli:
     name: Build CLI
-    runs-on: windows-2019
+    runs-on: ubuntu-20.04
     steps:
       - name: Check out git repository
         uses: actions/checkout@v2
 
-      - name: Cache choosenim
-        id: cache-choosenim
-        uses: actions/cache@v1
+      - name: Setup Rust
+        uses: actions-rs/toolchain@v1
         with:
-          path: ~/.choosenim
-          key: ${{ runner.os }}-choosenim
-      - name: Setup Nim
-        uses: jiro4989/setup-nim-action@v1
-        with:
-          nim-version: "1.6.0"
+          toolchain: stable
 
       - name: Build CLI
-        run: |
-          nimble install --depsOnly -y
-          nim c -d:release -d:strip --opt:size --app:gui --outdir:. cli/*.nim
-      - name: Run UPX
-        uses: crazy-max/ghaction-upx@v1
+        uses: actions-rs/cargo@v1
         with:
-          version: latest
-          files: |
-            ./p2vrc_cli.exe
-          args: "-9"
+          use-cross: true
+          command: build
+          args: --target x86_64-pc-windows-gnu
 
   build-addons:
     name: Build Addons
