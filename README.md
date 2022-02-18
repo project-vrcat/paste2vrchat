@@ -4,7 +4,7 @@ WIP
 
 ## TODO
 
-- [x] [Command line tools](./cli)
+- [x] [Command line tools](https://github.com/project-vrcat/paste2vrchat)
 - [x] [Browser extension](https://github.com/project-vrcat/paste2vrchat-addons)
 - [x] [Web UI](https://github.com/project-vrcat/paste2vrchat-web)
 
